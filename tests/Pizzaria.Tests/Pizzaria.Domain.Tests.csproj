@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pizzaria.Domain\Pizzaria.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Pizzaria.Domain\Pizzaria.Domain.csproj" />
   </ItemGroup>
 
 </Project>
