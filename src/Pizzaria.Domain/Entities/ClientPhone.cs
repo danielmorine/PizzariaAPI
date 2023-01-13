@@ -12,13 +12,13 @@ namespace Pizzaria.Domain.Entities
 
         public Client Client { get; set; }
 
-        public ClientPhone(Guid id, DateTimeOffset date, string regionNumber, string number)
+        public ClientPhone(Guid id, DateTimeOffset createdDate, string regionNumber, string number)
         {
             ValidateIdDomain(id);
             ValidatePhoneDomain(regionNumber, number);
 
             Id = id;
-            CreatedDate = date;
+            CreatedDate = createdDate;
             RegionNumber = regionNumber;
             Number = number;
         }

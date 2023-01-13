@@ -10,12 +10,12 @@ namespace Pizzaria.Domain.Entities
         public Guid IngredientId { get; set; }
         public Ingredient Ingredient { get; set; }
 
-        public ProductIngredient(Guid id, Guid productId, Guid ingredientId, DateTimeOffset date)
+        public ProductIngredient(Guid id, Guid productId, Guid ingredientId, DateTimeOffset createdDate)
         {
             Id = id;
             ProductId = productId;
             IngredientId = ingredientId;
-            CreatedDate = date;
+            CreatedDate = createdDate;
         }
     }
 }

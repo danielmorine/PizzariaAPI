@@ -16,7 +16,6 @@ namespace Pizzaria.Infra.Data.EntitiesConfiguration
                 .IsRequired();
 
             builder.Property(b => b.Number)
-                .HasColumnName("VARCHAR(10)")
                 .HasMaxLength(10)
                 .IsRequired();
 

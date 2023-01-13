@@ -11,13 +11,13 @@ namespace Pizzaria.Domain.Entities
 
         public ICollection<ProductIngredient>? ProductIngredients { get; set; }
 
-        public Product(Guid id, string name, DateTimeOffset date)
+        public Product(Guid id, string name, DateTimeOffset createdDate)
         {
             ValidateIdDomain(id);
             ValidatenNameDomain(name);
             Id = id;
             Name = name;
-            CreatedDate = date;
+            CreatedDate = createdDate;
         }
 
         public void Update(string name)

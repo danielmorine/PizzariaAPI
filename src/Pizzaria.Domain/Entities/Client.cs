@@ -9,14 +9,14 @@ namespace Pizzaria.Domain.Entities
     {
         public string Name { get; private set; }
 
-        public Client(Guid id, string name, DateTimeOffset date) 
+        public Client(Guid id, string name, DateTimeOffset createdDate) 
         {
             ValidateIdDomain(id);   
             ValidatenNameDomain(name);
 
             Name = name;
             Id = id;
-            CreatedDate = date;          
+            CreatedDate = createdDate;          
         }
         public void Update(string name)
         {

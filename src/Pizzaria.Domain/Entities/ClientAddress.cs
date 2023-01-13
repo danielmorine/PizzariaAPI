@@ -15,13 +15,13 @@ namespace Pizzaria.Domain.Entities
 
         public Client Client { get; set; }
 
-        public ClientAddress(Guid id, DateTimeOffset date, string address, int number, string complement, string city, string zipCode)
+        public ClientAddress(Guid id, DateTimeOffset createdDate, string address, int number, string complement, string city, string zipCode)
         {
             ValidateIdDomain(id);
             ValidateClientAddressDomain(address, number, city, zipCode);
 
             Id = id;    
-            CreatedDate= date;  
+            CreatedDate= createdDate;  
             Address = address;
             Number = number;
             Complement = complement;
