@@ -21,7 +21,7 @@ namespace Pizzaria.Infra.Data.Repositories
         }
 
         public async Task DeleteAsync(Ingredient ingredient)
-        {
+        {            
             _context.Ingredients.Remove(ingredient);
             await _context.SaveChangesAsync();
         }

@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="9.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Pizzaria.Application\Pizzaria.Application.csproj" />
     <ProjectReference Include="..\Pizzaria.Domain\Pizzaria.Domain.csproj" />
     <ProjectReference Include="..\Pizzaria.Infra.Data\Pizzaria.Infra.Data.csproj" />

@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
+﻿using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Pizzaria.Application.Interfaces;
+using Pizzaria.Application.Mappings;
+using Pizzaria.Application.Services;
 using Pizzaria.Domain.Interfaces;
 using Pizzaria.Infra.Data.Context;
 using Pizzaria.Infra.Data.Repositories;
-using System.Text;
 
 namespace Pizzaria.IoC
 {
@@ -21,6 +22,13 @@ namespace Pizzaria.IoC
             services.AddScoped<IProductIngredientRepository, ProductIngredientRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
+            services.AddScoped<IIngredientService, IngredientService>();
+            
+            services.AddAutoMapper(typeof(AutoMapperProfile));
+
+            var myHandlers = AppDomain.CurrentDomain.Load("Pizzaria.Application");
+
+            services.AddMediatR(myHandlers);
             return services;
         }    
     }
