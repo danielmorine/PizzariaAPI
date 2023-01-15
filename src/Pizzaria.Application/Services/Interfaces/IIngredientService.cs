@@ -1,6 +1,6 @@
 ﻿using Pizzaria.Application.DTOs;
 
-namespace Pizzaria.Application.Interfaces
+namespace Pizzaria.Application.Services.Interfaces
 {
     public interface IIngredientService
     {

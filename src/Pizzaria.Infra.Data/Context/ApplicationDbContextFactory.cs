@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.Text;
+using Pizzaria.Infra.Data.Utils;
 
 namespace Pizzaria.Infra.Data.Context
 {
@@ -18,27 +18,9 @@ namespace Pizzaria.Infra.Data.Context
             var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            builder.UseSqlServer(GetConnectionString(connectionString));
+            builder.UseSqlServer(StringUtils.GetValueFromFile(connectionString));
 
             return new ApplicationDbContext(builder.Options);
-        }
-
-        private static string GetConnectionString(string value)
-        {
-            var connectionString = value;
-            if (value.Contains('\\'))
-            {
-                using FileStream fs = File.Open(value, FileMode.Open);
-                byte[] b = new byte[1024];
-                UTF8Encoding temp = new(true);
-
-                while (fs.Read(b, 0, b.Length) > 0)
-                {
-                    connectionString = temp.GetString(b);
-                }
-            }
-
-            return connectionString;
-        }
+        }        
     }
 }

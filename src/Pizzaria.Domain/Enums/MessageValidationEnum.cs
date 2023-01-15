@@ -59,7 +59,12 @@ namespace Pizzaria.Domain.Enums
         ClientAddressZipCodeIsRequired = 17,
 
         [Description("CEP maior que 10 caracteres")]
-        ClientAddressZipCodeIsToLarge = 18
+        ClientAddressZipCodeIsToLarge = 18,
 
+        [Description("Usuário ou senha inválido")]
+        UserOrPasswordInvalid = 19,
+
+        [Description("Falha ao tentar registar o usúario")]
+        UserRegisterFailure = 20
     }
 }

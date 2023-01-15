@@ -2,8 +2,8 @@
 using MediatR;
 using Pizzaria.Application.Commands.IngredientCommands;
 using Pizzaria.Application.DTOs;
-using Pizzaria.Application.Interfaces;
 using Pizzaria.Application.Queries.IngredientQueries;
+using Pizzaria.Application.Services.Interfaces;
 
 namespace Pizzaria.Application.Services
 {
