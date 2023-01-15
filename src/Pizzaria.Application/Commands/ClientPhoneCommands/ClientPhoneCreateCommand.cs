@@ -1,6 +1,5 @@
-﻿namespace Pizzaria.Application.Commands.ClientPhoneCommands
+﻿namespace Pizzaria.Application.Commands.ClientPhoneCommands;
+
+public class ClientPhoneCreateCommand : ClientPhoneCommand
 {
-    public class ClientPhoneCreateCommand : ClientPhoneCommand
-    {
-    }
 }

@@ -1,13 +1,12 @@
 ﻿using Pizzaria.Application.DTOs;
 
-namespace Pizzaria.Application.Services.Interfaces
+namespace Pizzaria.Application.Services.Interfaces;
+
+public interface IIngredientService
 {
-    public interface IIngredientService
-    {
-        Task<IEnumerable<IngredientDTO>> GetAllAsync();
-        Task<IngredientDTO> GetByIdAsync(Guid id);
-        Task AddAsync(IngredientDTO dto);
-        Task DeleteAsync(Guid id);
-        Task UpdateAsync(IngredientDTO dto);
-    }
+    Task<IEnumerable<IngredientDTO>> GetAllAsync();
+    Task<IngredientDTO> GetByIdAsync(Guid id);
+    Task AddAsync(IngredientDTO dto);
+    Task DeleteAsync(Guid id);
+    Task UpdateAsync(IngredientDTO dto);
 }

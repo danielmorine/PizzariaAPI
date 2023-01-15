@@ -2,14 +2,13 @@
 using Pizzaria.Application.Commands.IngredientCommands;
 using Pizzaria.Application.DTOs;
 
-namespace Pizzaria.Application.Mappings
+namespace Pizzaria.Application.Mappings;
+
+public class AutoMapperCommandProfile : Profile
 {
-    public class AutoMapperCommandProfile : Profile
+    public AutoMapperCommandProfile() 
     {
-        public AutoMapperCommandProfile() 
-        {
-            CreateMap<IngredientDTO, IngredientCreateCommand>();
-            CreateMap<IngredientDTO, IngredientUpdateCommand>();
-        }
+        CreateMap<IngredientDTO, IngredientCreateCommand>();
+        CreateMap<IngredientDTO, IngredientUpdateCommand>();
     }
 }

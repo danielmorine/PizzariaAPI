@@ -1,8 +1,7 @@
-﻿namespace Pizzaria.Application.DTOs
+﻿namespace Pizzaria.Application.DTOs;
+
+public class ProductDTO
 {
-    public class ProductDTO
-    {
-        public string Name { get; set; }
-        public Guid Id { get; set; }
-    }
+    public string Name { get; set; }
+    public Guid Id { get; set; }
 }

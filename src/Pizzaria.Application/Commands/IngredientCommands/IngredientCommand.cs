@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace Pizzaria.Application.Commands.IngredientCommands
+namespace Pizzaria.Application.Commands.IngredientCommands;
+
+public abstract class IngredientCommand : IRequest<bool>
 {
-    public abstract class IngredientCommand : IRequest<bool>
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
 }

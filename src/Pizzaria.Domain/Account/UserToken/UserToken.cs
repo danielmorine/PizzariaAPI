@@ -1,8 +1,7 @@
-﻿namespace Pizzaria.Domain.Account
+﻿namespace Pizzaria.Domain.Account;
+
+public class UserToken
 {
-    public class UserToken
-    {
-        public string Token { get; set; }
-        public DateTimeOffset Expiration { get; set; }
-    }
+    public string Token { get; set; }
+    public DateTimeOffset Expiration { get; set; }
 }

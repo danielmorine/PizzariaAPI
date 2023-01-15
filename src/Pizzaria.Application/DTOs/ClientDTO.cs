@@ -1,9 +1,8 @@
-﻿namespace Pizzaria.Application.DTOs
+﻿namespace Pizzaria.Application.DTOs;
+
+public class ClientDTO
 {
-    public class ClientDTO
-    {
-        public string Name { get; set; }
-        public ClientAddressDTO Address { get; set; }
-        public ClientPhoneDTO Phone { get; set; }
-    }
+    public string Name { get; set; }
+    public ClientAddressDTO Address { get; set; }
+    public ClientPhoneDTO Phone { get; set; }
 }

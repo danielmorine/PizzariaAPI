@@ -1,10 +1,9 @@
 ﻿using Pizzaria.Domain.Entities;
 
-namespace Pizzaria.Domain.Interfaces
+namespace Pizzaria.Domain.Interfaces;
+
+public interface IClientPhoneRepository
 {
-    public interface IClientPhoneRepository
-    {
-        Task AddAsync(ClientPhone clientPhone);
-        Task UpdateAsync(ClientPhone clientPhone);       
-    }
+    Task AddAsync(ClientPhone clientPhone);
+    Task UpdateAsync(ClientPhone clientPhone);       
 }

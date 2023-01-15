@@ -1,9 +1,8 @@
-﻿namespace Pizzaria.Application.DTOs
+﻿namespace Pizzaria.Application.DTOs;
+
+public class RegisterDTO
 {
-    public class RegisterDTO
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
-    }
+    public string Email { get; set; }
+    public string Password { get; set; }
+    public string ConfirmPassword { get; set; }
 }

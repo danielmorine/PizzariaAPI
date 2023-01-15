@@ -2,47 +2,46 @@
 using Pizzaria.Application.DTOs;
 using Pizzaria.Application.Services.Interfaces;
 
-namespace Pizzaria.API.Controllers
+namespace Pizzaria.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class TokenController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TokenController : ControllerBase
+    private readonly IUserService _service;
+
+    public TokenController(IUserService service)
     {
-        private readonly IUserService _service;
+        _service = service;
+    }
 
-        public TokenController(IUserService service)
+    [HttpPost("Login")]
+    public async Task<IActionResult> Login(LoginDTO user)
+    {
+        try
         {
-            _service = service;
-        }
+            var result = await _service.AuthenticateAsync(user.Email, user.Password);
 
-        [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginDTO user)
+            return Ok(result);
+        }
+        catch (Exception ex)
         {
-            try
-            {
-                var result = await _service.AuthenticateAsync(user.Email, user.Password);
-
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return BadRequest(ex.Message);
         }
+    }
 
-        [HttpPost("CreateUser")]
-        public async Task<IActionResult> CreateUser(LoginDTO user)
+    [HttpPost("CreateUser")]
+    public async Task<IActionResult> CreateUser(LoginDTO user)
+    {
+        try
         {
-            try
-            {
-               await _service.RegisterUserAsync(user.Email, user.Password);
+           await _service.RegisterUserAsync(user.Email, user.Password);
 
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }            
+            return NoContent();
         }
+        catch (Exception ex)
+        {
+            return BadRequest(ex);
+        }            
     }
 }

@@ -1,6 +1,5 @@
-﻿namespace Pizzaria.Infra.Data.Identity.Interfaces
+﻿namespace Pizzaria.Infra.Data.Identity.Interfaces;
+
+public interface IJwtOptions
 {
-    public interface IJwtOptions
-    {
-    }
 }

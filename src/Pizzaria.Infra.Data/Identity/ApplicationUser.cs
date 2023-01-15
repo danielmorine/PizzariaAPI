@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Pizzaria.Infra.Data.Identity
+namespace Pizzaria.Infra.Data.Identity;
+
+public class ApplicationUser : IdentityUser
 {
-    public class ApplicationUser : IdentityUser
-    {
-       
-    }
+   
 }

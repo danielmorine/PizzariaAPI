@@ -1,8 +1,7 @@
-﻿namespace Pizzaria.Application.DTOs
+﻿namespace Pizzaria.Application.DTOs;
+
+public class UserTokenDTO
 {
-    public class UserTokenDTO
-    {
-        public string Token { get; set; }
-        public DateTimeOffset Expiration { get; set; }
-    }
+    public string Token { get; set; }
+    public DateTimeOffset Expiration { get; set; }
 }

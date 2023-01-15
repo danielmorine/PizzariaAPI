@@ -1,9 +1,8 @@
 ﻿using Pizzaria.Application.DTOs;
 
-namespace Pizzaria.Application.Services.Interfaces
+namespace Pizzaria.Application.Services.Interfaces;
+
+public interface IClientService
 {
-    public interface IClientService
-    {
-        Task AddAsync(ClientDTO dto);
-    }
+    Task AddAsync(ClientDTO dto);
 }

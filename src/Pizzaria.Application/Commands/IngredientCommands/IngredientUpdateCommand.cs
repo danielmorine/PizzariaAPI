@@ -1,7 +1,6 @@
-﻿namespace Pizzaria.Application.Commands.IngredientCommands
+﻿namespace Pizzaria.Application.Commands.IngredientCommands;
+
+public class IngredientUpdateCommand : IngredientCommand
 {
-    public class IngredientUpdateCommand : IngredientCommand
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }

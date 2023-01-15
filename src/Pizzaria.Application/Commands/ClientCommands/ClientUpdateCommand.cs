@@ -1,7 +1,6 @@
-﻿namespace Pizzaria.Application.Commands.ClientCommands
+﻿namespace Pizzaria.Application.Commands.ClientCommands;
+
+public class ClientUpdateCommand : ClientCommand
 {
-    public class ClientUpdateCommand : ClientCommand
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
 }

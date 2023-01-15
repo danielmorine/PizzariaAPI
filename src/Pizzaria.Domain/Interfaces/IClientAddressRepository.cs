@@ -1,10 +1,9 @@
 ﻿using Pizzaria.Domain.Entities;
 
-namespace Pizzaria.Domain.Interfaces
+namespace Pizzaria.Domain.Interfaces;
+
+public interface IClientAddressRepository
 {
-    public interface IClientAddressRepository
-    {
-        Task AddAsync(ClientAddress clientAddress);
-        Task UpdateAsync(ClientAddress clientAddress);       
-    }
+    Task AddAsync(ClientAddress clientAddress);
+    Task UpdateAsync(ClientAddress clientAddress);       
 }

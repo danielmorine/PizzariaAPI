@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace Pizzaria.Application.Commands.ClientCommands
+namespace Pizzaria.Application.Commands.ClientCommands;
+
+public class ClientCommand : IRequest<bool>
 {
-    public class ClientCommand : IRequest<bool>
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }

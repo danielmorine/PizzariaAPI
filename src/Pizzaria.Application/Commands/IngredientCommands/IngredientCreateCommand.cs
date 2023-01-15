@@ -1,6 +1,5 @@
-﻿namespace Pizzaria.Application.Commands.IngredientCommands
+﻿namespace Pizzaria.Application.Commands.IngredientCommands;
+
+public class IngredientCreateCommand : IngredientCommand
 {
-    public class IngredientCreateCommand : IngredientCommand
-    {
-    }
 }

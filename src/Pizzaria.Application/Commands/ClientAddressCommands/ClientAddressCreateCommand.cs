@@ -1,7 +1,6 @@
-﻿namespace Pizzaria.Application.Commands.ClientAddressCommands
+﻿namespace Pizzaria.Application.Commands.ClientAddressCommands;
+
+public class ClientAddressCreateCommand : ClientAddressCommand
 {
-    public class ClientAddressCreateCommand : ClientAddressCommand
-    {
-        
-    }
+    
 }

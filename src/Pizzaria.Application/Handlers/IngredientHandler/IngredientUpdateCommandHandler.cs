@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pizzaria.Application.Handlers.IngredientHandler
+namespace Pizzaria.Application.Handlers.IngredientHandler;
+
+internal class IngredientUpdateCommandHandler
 {
-    internal class IngredientUpdateCommandHandler
-    {
-    }
 }
