@@ -16,12 +16,13 @@ namespace Pizzaria.Infra.Data.Identity
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IConfiguration _configuration;
-        public AuthenticateService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IConfiguration configuration)
+        private readonly JwtOptions _jwtOptions;        
+
+        public AuthenticateService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, JwtOptions jwtOptions)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _configuration = configuration;
+            _jwtOptions = jwtOptions;
         }
 
         public async Task<bool> AuthenticateAsync(string email, string password)
@@ -32,9 +33,9 @@ namespace Pizzaria.Infra.Data.Identity
 
         public UserToken GenerateToken(Login login)
         {
-            var secretKey = StringUtils.GetValueFromFile(_configuration["Jwt:SecretKey"]).Replace("\0", "");
-            var issuer = StringUtils.GetValueFromFile(_configuration["Jwt:Issuer"]).Replace("\0", "");
-            var audience = StringUtils.GetValueFromFile(_configuration["Jwt:Audience"]).Replace("\0", "");
+            var secretKey = StringUtils.GetValueFromFile(_jwtOptions.SecretKey).Replace("\0", "");
+            var issuer = StringUtils.GetValueFromFile(_jwtOptions.Issuer).Replace("\0", "");
+            var audience = StringUtils.GetValueFromFile(_jwtOptions.Audience).Replace("\0", "");
             var expiration = DateTime.UtcNow.AddMinutes(30);
 
             var claims = CreateClaims(login);
