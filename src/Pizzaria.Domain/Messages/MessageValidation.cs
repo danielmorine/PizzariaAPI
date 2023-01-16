@@ -25,4 +25,6 @@ public static class MessageValidation
     public const string UserRegisterFailure = "Falha ao tentar registar o usúario";
     public const string IngredientNotFound = "Falha ao buscar um ingrediente com o id informado";
     public const string IngredientDeleteFailed = "Falha ao tentar deletar o ingrediente";
+    public const string ProductDeleteFailed = "Falha ao tentar deletar um produto";
+    public const string ProductNotFound = "Falha ao buscar um produto com o id informado";
 }
