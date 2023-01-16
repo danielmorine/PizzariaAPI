@@ -1,7 +1,6 @@
 using FluentAssertions;
 using Pizzaria.Domain.Entities;
-using Pizzaria.Domain.Enums;
-using Pizzaria.Domain.Utils;
+using Pizzaria.Domain.Messges;
 using Pizzaria.Domain.Validation;
 using Xunit;
 
@@ -20,14 +19,14 @@ public class IngredientTest
     public void CreateIngredient_WithInvalidId_ShouldByException()
     {
         Action action = () => new Ingredient(Guid.Empty, "Frango", DateTimeOffset.UtcNow);
-        action.Should().Throw<DomainExceptionValidation>().WithMessage(MessageValidationEnum.InvalidId.GetDescription());
+        action.Should().Throw<DomainExceptionValidation>().WithMessage(MessageValidation.InvalidId);
     }
 
     [Fact]
     public void CreateIngredient_WithNameEmpty_ShouldByException()
     {
         Action action = () => new Ingredient(Guid.Empty, "", DateTimeOffset.UtcNow);
-        action.Should().Throw<DomainExceptionValidation>().WithMessage(MessageValidationEnum.IngredientNameIsRequired.GetDescription());
+        action.Should().Throw<DomainExceptionValidation>().WithMessage(MessageValidation.IngredientNameIsRequired);
     }
 
     [Fact]
@@ -36,7 +35,7 @@ public class IngredientTest
         var name = "Super frango com alho especial, cebola, com queijo, camarão e carne de porco";
 
         Action action = () => new Ingredient(Guid.Empty, name, DateTimeOffset.UtcNow);
-        action.Should().Throw<DomainExceptionValidation>().WithMessage(MessageValidationEnum.IngredientNameIsToLarge.GetDescription());
+        action.Should().Throw<DomainExceptionValidation>().WithMessage(MessageValidation.IngredientNameIsToLarge);
     }
 
     [Fact]
@@ -50,7 +49,7 @@ public class IngredientTest
     public void UpdateIngredient_WithNameEmpty_ShouldByException()
     {
         Action action = () => new Ingredient(Guid.NewGuid(), "FRANGO", DateTimeOffset.UtcNow).Update("");
-        action.Should().Throw<DomainExceptionValidation>().WithMessage(MessageValidationEnum.IngredientNameIsRequired.GetDescription());
+        action.Should().Throw<DomainExceptionValidation>().WithMessage(MessageValidation.IngredientNameIsRequired);
     }
 
     [Fact]
@@ -59,6 +58,6 @@ public class IngredientTest
         var name = "Super frango com alho especial, cebola, com queijo, camarão e carne de porco";
 
         Action action = () => new Ingredient(Guid.NewGuid(), "frango ", DateTimeOffset.UtcNow).Update(name);
-        action.Should().Throw<DomainExceptionValidation>().WithMessage(MessageValidationEnum.IngredientNameIsToLarge.GetDescription());
+        action.Should().Throw<DomainExceptionValidation>().WithMessage(MessageValidation.IngredientNameIsToLarge);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Pizzaria.Domain.Entities.Base;
-using Pizzaria.Domain.Enums;
+using Pizzaria.Domain.Messges;
 using Pizzaria.Domain.Utils;
 using Pizzaria.Domain.Validation;
 
@@ -34,15 +34,15 @@ public sealed class ClientPhone : EntityBase
     private static void ValidatePhoneDomain(string regionNumber, string number)
     {
         DomainExceptionValidation.When(string.IsNullOrEmpty(regionNumber),
-            MessageValidationEnum.ClientPhoneRegionIsRequired.GetDescription());
+            MessageValidation.ClientPhoneRegionIsRequired);
 
         DomainExceptionValidation.When(string.IsNullOrEmpty(number),
-            MessageValidationEnum.ClientPhoneNumberIsRequired.GetDescription());
+            MessageValidation.ClientPhoneNumberIsRequired);
 
         DomainExceptionValidation.When(number.Length > 10,
-            MessageValidationEnum.ClientPhoneNumberIsToLargeRequired.GetDescription());
+            MessageValidation.ClientPhoneNumberIsToLargeRequired);
 
         DomainExceptionValidation.When(regionNumber.Length > 3,
-            MessageValidationEnum.ClientPhoneRegionIsToLargeRequired.GetDescription());
+            MessageValidation.ClientPhoneRegionIsToLargeRequired);
     }
 }

@@ -1,10 +1,10 @@
-﻿using Pizzaria.Domain.Account;
+﻿using Pizzaria.Application.DTOs;
 
 namespace Pizzaria.Application.Services.Interfaces;
 
 public interface IUserService
 {
-    Task<UserToken> AuthenticateAsync(string email, string password);
-    Task RegisterUserAsync(string email, string password);
-    Task Logout();
+    Task<IResponseResult<UserTokenDTO>> AuthenticateAsync(string email, string password);
+    Task<ResponseResult> RegisterUserAsync(string email, string password);
+    Task<ResponseResult> Logout();
 }

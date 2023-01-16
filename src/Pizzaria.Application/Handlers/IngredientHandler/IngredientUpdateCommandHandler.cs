@@ -1,11 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using Pizzaria.Application.Commands.IngredientCommands;
+using Pizzaria.Domain.Interfaces;
 
 namespace Pizzaria.Application.Handlers.IngredientHandler;
 
-internal class IngredientUpdateCommandHandler
+public class IngredientUpdateCommandHandler : IRequestHandler<IngredientUpdateCommand, bool>
 {
+    private readonly IIngredientRepository _repository;
+
+    public IngredientUpdateCommandHandler(IIngredientRepository repository)
+    {
+        _repository = repository;
+    }
+
+    public async Task<bool> Handle(IngredientUpdateCommand request, CancellationToken cancellationToken)
+    {
+        var ingredient = await _repository.GetByIdAsync(request.Id);
+
+        if (ingredient is null)
+        {
+            return false;
+        }            
+
+        ingredient.Update(request.Name);
+
+        await _repository.UpdateAsync(ingredient);
+        return true;
+    }
 }

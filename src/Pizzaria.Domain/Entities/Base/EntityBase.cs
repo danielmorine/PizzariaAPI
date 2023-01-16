@@ -1,5 +1,4 @@
-﻿using Pizzaria.Domain.Enums;
-using Pizzaria.Domain.Utils;
+﻿using Pizzaria.Domain.Messges;
 using Pizzaria.Domain.Validation;
 
 namespace Pizzaria.Domain.Entities.Base;
@@ -12,6 +11,6 @@ public class EntityBase
     public static void ValidateIdDomain(Guid id)
     {
         DomainExceptionValidation.When(id == Guid.Empty,
-            MessageValidationEnum.InvalidId.GetDescription());
+            MessageValidation.InvalidId);
     }
 }

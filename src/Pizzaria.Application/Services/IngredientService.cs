@@ -4,6 +4,7 @@ using Pizzaria.Application.Commands.IngredientCommands;
 using Pizzaria.Application.DTOs;
 using Pizzaria.Application.Queries.IngredientQueries;
 using Pizzaria.Application.Services.Interfaces;
+using Pizzaria.Domain.Messges;
 
 namespace Pizzaria.Application.Services;
 
@@ -18,38 +19,116 @@ public class IngredientService : IIngredientService
         _mediator = mediator;
     }
 
-    public async Task AddAsync(IngredientDTO dto)
+    public async Task<ResponseResult> AddAsync(IngredientDTO dto)
     {
-        var ingredient = _mapper.Map<IngredientCreateCommand>(dto);
-        await _mediator.Send(ingredient);
+        var responseResult = new ResponseResult();
+
+        try
+        {
+            var ingredient = _mapper.Map<IngredientCreateCommand>(dto);
+            await _mediator.Send(ingredient);
+
+            responseResult.Success = true;
+        }
+        catch (Exception ex)
+        {
+            responseResult.Success = false;
+            responseResult.MessageError = new[] { ex.Message };
+        }
+
+        return responseResult;
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task<ResponseResult> DeleteAsync(Guid id)
     {
-        var ingredientDTO = await GetByIdAsync(id);
+        var responseResult = new ResponseResult();
 
-        if (ingredientDTO == null)
-            throw new ApplicationException("Ingrediente não encontrado");
+        try
+        {
+            var ingredient = new IngredientRemoveCommand { Id = id };
+            var result = await _mediator.Send(ingredient);
 
-        var ingredient = _mapper.Map<IngredientRemoveCommand>(ingredientDTO);
-        await _mediator.Send(ingredient);
+            if (result is false)
+                responseResult.MessageError = new[] { MessageValidation.IngredientDeleteFailed };
+            else
+                responseResult.Success = true;
+        }
+        catch (Exception ex)
+        {
+            responseResult.Success = false;
+            responseResult.MessageError = new[] { ex.Message };
+        }
+
+        return responseResult;
     }
 
-    public async Task<IEnumerable<IngredientDTO>> GetAllAsync()
+    public async Task<IResponseResult<IEnumerable<IngredientDTO>>> GetAllAsync()
     {
-        var result = await _mediator.Send(new GetAllIngredientQuery());
-        return _mapper.Map<IEnumerable<IngredientDTO>>(result);
+        var responseResult = new ResponseResult<IEnumerable<IngredientDTO>>();
+
+        try
+        {
+            var result = await _mediator.Send(new GetAllIngredientQuery());
+            var ingredientList = _mapper.Map<IEnumerable<IngredientDTO>>(result);
+
+            responseResult.Success = true;
+            responseResult.Payload = ingredientList;
+        }
+        catch (Exception ex)
+        {
+            responseResult.Success = false;
+            responseResult.MessageError = new[] { ex.Message };
+        }
+
+        return responseResult;
     }
 
-    public async Task<IngredientDTO> GetByIdAsync(Guid id)
+    public async Task<IResponseResult<IngredientDTO>> GetByIdAsync(Guid id)
     {
-        var result = await _mediator.Send(new GetIngredientByIdQuery(id));
-        return _mapper.Map<IngredientDTO>(result);
+        var responseResult = new ResponseResult<IngredientDTO>();
+        try
+        {
+            var result = await _mediator.Send(new GetIngredientByIdQuery(id));
+            var ingredientDTO = _mapper.Map<IngredientDTO>(result);
+
+            if (ingredientDTO is null)
+                responseResult.MessageError = new string[] { MessageValidation.IngredientNotFound }; 
+            else
+            {
+                responseResult.Success = true;
+                responseResult.Payload = ingredientDTO;
+            }
+        }   
+        catch (Exception ex)
+        {
+            responseResult.Success = false; 
+            responseResult.MessageError = new[] { ex.Message };
+        }
+
+        return responseResult;
     }
 
-    public async Task UpdateAsync(IngredientDTO dto)
+    public async Task<ResponseResult> UpdateAsync(IngredientDTO dto)
     {
-        var ingredientUpdate = _mapper.Map<IngredientUpdateCommand>(dto);
-        await _mediator.Send(ingredientUpdate);            
+        var responseResult = new ResponseResult();
+        try
+        {
+            var ingredientUpdate = _mapper.Map<IngredientUpdateCommand>(dto);
+            var result = await _mediator.Send(ingredientUpdate);
+
+            if (result is false)
+            {
+                responseResult.Success = false;
+                responseResult.MessageError = new[] { MessageValidation.IngredientNotFound };
+            }
+            responseResult.Success = true;
+        }
+        catch (Exception ex)
+        {
+            responseResult.Success = false;
+            responseResult.MessageError = new[] { ex.Message };
+        }
+
+        return responseResult;
     }
 }

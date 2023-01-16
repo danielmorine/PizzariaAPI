@@ -1,5 +1,5 @@
 ﻿using Pizzaria.Domain.Entities.Base;
-using Pizzaria.Domain.Enums;
+using Pizzaria.Domain.Messges;
 using Pizzaria.Domain.Utils;
 using Pizzaria.Domain.Validation;
 
@@ -43,27 +43,27 @@ public sealed class ClientAddress : EntityBase
     private static void ValidateClientAddressDomain(string address, int number, string city, string zipCode)
     {
         DomainExceptionValidation.When(string.IsNullOrEmpty(address),
-            MessageValidationEnum.ClientAddressAddressIsRequired.GetDescription());
+            MessageValidation.ClientAddressAddressIsRequired);
 
         DomainExceptionValidation.When(address.Length > 200,
-            MessageValidationEnum.ClientAddressAddressIsToLarge.GetDescription());
+            MessageValidation.ClientAddressAddressIsToLarge);
 
         DomainExceptionValidation.When(number > 0,
-           MessageValidationEnum.ClientAddressNumberIsRequired.GetDescription());
+           MessageValidation.ClientAddressNumberIsRequired);
 
         DomainExceptionValidation.When(number.ToString().Length > 10,
-            MessageValidationEnum.ClientAddressNumberIsToLarge.GetDescription());
+            MessageValidation.ClientAddressNumberIsToLarge);
 
         DomainExceptionValidation.When(string.IsNullOrEmpty(city),
-            MessageValidationEnum.ClientAddressCityIsRequired.GetDescription());
+            MessageValidation.ClientAddressCityIsRequired);
 
         DomainExceptionValidation.When(city.Length > 300,
-            MessageValidationEnum.ClientAddressCityIsToLarge.GetDescription());
+            MessageValidation.ClientAddressCityIsToLarge);
 
         DomainExceptionValidation.When(string.IsNullOrEmpty(zipCode),
-            MessageValidationEnum.ClientAddressZipCodeIsRequired.GetDescription());
+            MessageValidation.ClientAddressZipCodeIsRequired);
 
         DomainExceptionValidation.When(zipCode.Length > 10,
-            MessageValidationEnum.ClientAddressZipCodeIsToLarge.GetDescription());
+            MessageValidation.ClientAddressZipCodeIsToLarge);
     }
 }

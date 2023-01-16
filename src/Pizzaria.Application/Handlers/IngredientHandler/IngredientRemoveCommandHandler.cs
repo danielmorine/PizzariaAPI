@@ -16,7 +16,13 @@ public class IngredientRemoveCommandHandler : IRequestHandler<IngredientRemoveCo
 
     public async Task<bool> Handle(IngredientRemoveCommand request, CancellationToken cancellationToken)
     {
-        var ingredient = new Ingredient(request.Id, request.Name, request.CreatedDate);
+        var ingredient = await _repository.GetByIdAsync(request.Id);
+
+        if (ingredient is null)
+        {
+            return false;
+        }
+
         await _repository.DeleteAsync(ingredient);
 
         return true;

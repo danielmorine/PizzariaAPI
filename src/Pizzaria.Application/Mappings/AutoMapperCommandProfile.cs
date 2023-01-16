@@ -10,5 +10,6 @@ public class AutoMapperCommandProfile : Profile
     {
         CreateMap<IngredientDTO, IngredientCreateCommand>();
         CreateMap<IngredientDTO, IngredientUpdateCommand>();
+        CreateMap<Guid, IngredientRemoveCommand>();
     }
 }

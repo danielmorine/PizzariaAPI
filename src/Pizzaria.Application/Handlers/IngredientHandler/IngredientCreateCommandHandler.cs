@@ -18,7 +18,7 @@ public class IngredientCreateCommandHandler : IRequestHandler<IngredientCreateCo
     {
         Ingredient ingredient = new(Guid.NewGuid(), request.Name, DateTimeOffset.UtcNow);
 
-        if (ingredient == null)
+        if (ingredient is null)
             throw new ApplicationException("Error creating entity");
 
         await _repository.AddAsync(ingredient);

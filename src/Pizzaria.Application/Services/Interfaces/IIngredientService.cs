@@ -4,9 +4,9 @@ namespace Pizzaria.Application.Services.Interfaces;
 
 public interface IIngredientService
 {
-    Task<IEnumerable<IngredientDTO>> GetAllAsync();
-    Task<IngredientDTO> GetByIdAsync(Guid id);
-    Task AddAsync(IngredientDTO dto);
-    Task DeleteAsync(Guid id);
-    Task UpdateAsync(IngredientDTO dto);
+    Task<IResponseResult<IEnumerable<IngredientDTO>>> GetAllAsync();
+    Task<IResponseResult<IngredientDTO>> GetByIdAsync(Guid id);
+    Task<ResponseResult> AddAsync(IngredientDTO dto);
+    Task<ResponseResult> DeleteAsync(Guid id);
+    Task<ResponseResult> UpdateAsync(IngredientDTO dto);
 }

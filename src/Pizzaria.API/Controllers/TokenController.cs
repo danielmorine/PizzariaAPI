@@ -18,30 +18,14 @@ public class TokenController : ControllerBase
     [HttpPost("Login")]
     public async Task<IActionResult> Login(LoginDTO user)
     {
-        try
-        {
-            var result = await _service.AuthenticateAsync(user.Email, user.Password);
-
-            return Ok(result);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        var result = await _service.AuthenticateAsync(user.Email, user.Password);        
+        return result.Success ? Ok(result.Payload) : BadRequest(result.MessageError);       
     }
 
     [HttpPost("CreateUser")]
     public async Task<IActionResult> CreateUser(LoginDTO user)
     {
-        try
-        {
-           await _service.RegisterUserAsync(user.Email, user.Password);
-
-            return NoContent();
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex);
-        }            
+        var result = await _service.RegisterUserAsync(user.Email, user.Password);
+        return result.Success ? Ok() : BadRequest(result.MessageError);
     }
 }

@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Pizzaria.Domain.Account;
 using Pizzaria.Domain.Account.Interfaces;
-using Pizzaria.Domain.Enums;
-using Pizzaria.Domain.Utils;
+using Pizzaria.Domain.Messges;
 using Pizzaria.Infra.Data.Utils;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -74,7 +72,7 @@ public class AuthenticateService : IAuthenticate
             var result = await _userManager.CreateAsync(user, password);
 
             if (!result.Succeeded)
-                throw new ApplicationException(MessageValidationEnum.UserRegisterFailure.GetDescription());
+                throw new ApplicationException(MessageValidation.UserRegisterFailure);
 
             return result.Succeeded;
         }

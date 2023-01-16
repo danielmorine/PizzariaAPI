@@ -1,6 +1,5 @@
 ﻿using Pizzaria.Domain.Entities.Base;
-using Pizzaria.Domain.Enums;
-using Pizzaria.Domain.Utils;
+using Pizzaria.Domain.Messges;
 using Pizzaria.Domain.Validation;
 
 namespace Pizzaria.Domain.Entities;
@@ -29,9 +28,9 @@ public sealed class Product : EntityBase
     private static void ValidatenNameDomain(string name)
     {
         DomainExceptionValidation.When(string.IsNullOrEmpty(name),
-            MessageValidationEnum.ProductNameIsRequired.GetDescription());
+            MessageValidation.ProductNameIsRequired);
 
         DomainExceptionValidation.When(name.Length > 50,
-            MessageValidationEnum.ProductNameIsToLarge.GetDescription());
+            MessageValidation.ProductNameIsToLarge);
     }            
 }

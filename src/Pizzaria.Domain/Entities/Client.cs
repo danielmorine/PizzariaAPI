@@ -1,6 +1,5 @@
 ﻿using Pizzaria.Domain.Entities.Base;
-using Pizzaria.Domain.Enums;
-using Pizzaria.Domain.Utils;
+using Pizzaria.Domain.Messges;
 using Pizzaria.Domain.Validation;
 
 namespace Pizzaria.Domain.Entities;
@@ -34,9 +33,9 @@ public sealed class Client : EntityBase
     private static void ValidatenNameDomain(string name)
     {
         DomainExceptionValidation.When(string.IsNullOrEmpty(name),
-            MessageValidationEnum.ClientNameIsRequired.GetDescription());
+            MessageValidation.ClientNameIsRequired);
 
         DomainExceptionValidation.When(name.Length > 50,
-            MessageValidationEnum.ClientNameIsToLarge.GetDescription());
+            MessageValidation.ClientNameIsToLarge);
     }
 }
