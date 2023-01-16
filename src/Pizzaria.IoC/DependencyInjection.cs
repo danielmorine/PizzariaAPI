@@ -115,6 +115,7 @@ public static class DependencyInjection
         services.AddScoped<IUserService, UserService>();
 
         services.AddScoped<IIngredientService, IngredientService>();
+        services.AddScoped<IProductService, ProductService>();
 
         services.AddAutoMapper(typeof(AutoMapperProfile));
 

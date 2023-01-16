@@ -2,7 +2,7 @@
 
 namespace Pizzaria.Application.Services.Interfaces;
 
-public interface IProducService
+public interface IProductService
 {
     Task<IResponseResult<IEnumerable<ProductDTO>>> GetAllAsync();
     Task<IResponseResult<ProductDTO>> GetByIdAsync(Guid id);

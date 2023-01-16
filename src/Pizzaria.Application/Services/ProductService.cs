@@ -8,12 +8,12 @@ using Pizzaria.Domain.Messges;
 
 namespace Pizzaria.Application.Services;
 
-public class ProducService : IProducService
+public class ProductService : IProductService
 {
     private readonly IMapper _mapper;
     private readonly IMediator _mediator;
 
-    public ProducService(IMapper mapper, IMediator mediator)
+    public ProductService(IMapper mapper, IMediator mediator)
     {
         _mapper = mapper;
         _mediator = mediator;

@@ -6,9 +6,9 @@ namespace Pizzaria.Application.Handlers.ProductHandler;
 
 public class ProductRemoveCommandHandler : IRequestHandler<ProductRemoveCommand, bool>
 {
-    private readonly IIngredientRepository _repository;
+    private readonly IProductRepository _repository;
 
-    public ProductRemoveCommandHandler(IIngredientRepository repository)
+    public ProductRemoveCommandHandler(IProductRepository repository)
     {
         _repository = repository;
     }
