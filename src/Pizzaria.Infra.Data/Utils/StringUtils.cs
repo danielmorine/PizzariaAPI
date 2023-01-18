@@ -7,18 +7,25 @@ public static class StringUtils
     public static string GetValueFromFile(string value)
     {
         var connectionString = value;
-        if (value.Contains('\\'))
-        {
-            using FileStream fs = File.Open(value, FileMode.Open);
-            byte[] b = new byte[1024];
-            UTF8Encoding temp = new(true);
 
-            while (fs.Read(b, 0, b.Length) > 0)
+        try
+        {
+            if (value.Contains('\\'))
             {
-                connectionString = temp.GetString(b);
+                using FileStream fs = File.Open(value, FileMode.Open);
+                byte[] b = new byte[1024];
+                UTF8Encoding temp = new(true);
+
+                while (fs.Read(b, 0, b.Length) > 0)
+                {
+                    connectionString = temp.GetString(b);
+                }
             }
         }
+        catch (Exception ex)
+        {
 
+        }       
         return connectionString;
     }
 }

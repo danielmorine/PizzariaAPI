@@ -34,7 +34,7 @@ public class AuthenticateService : IAuthenticate
         var secretKey = StringUtils.GetValueFromFile(_jwtOptions.SecretKey).Replace("\0", "");
         var issuer = StringUtils.GetValueFromFile(_jwtOptions.Issuer).Replace("\0", "");
         var audience = StringUtils.GetValueFromFile(_jwtOptions.Audience).Replace("\0", "");
-        var expiration = DateTime.UtcNow.AddMinutes(30);
+        var expiration = DateTime.UtcNow.AddMinutes(600);
 
         var claims = CreateClaims(login);
         var credentials = CreateSigningCredentials(secretKey);            

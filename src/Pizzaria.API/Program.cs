@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using Pizzaria.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Logging.ClearProviders();
+
+builder.Logging.AddConsole();
 
 builder.Services.InstallServiceInjection(builder.Configuration);
 var app = builder.Build();

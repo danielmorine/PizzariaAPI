@@ -23,9 +23,8 @@ namespace Pizzaria.IoC;
 
 public static class DependencyInjection
 {
-
     public static IServiceCollection InstallServiceInjection(this IServiceCollection services, IConfiguration configuration)
-    {
+    {        
         services
             .AddSwaggerOptions()
             .AddInfrastructure(configuration)
@@ -131,6 +130,8 @@ public static class DependencyInjection
     public static IApplicationBuilder ConfigureCollectorElasticSearchServer(this IApplicationBuilder app, IConfiguration configuration)
     {
         app.ConfigureApmServer(configuration);
+        //app.UseMiddleware<MiddlewareForLogTelemetry>();
+
         return app;
     }
 }

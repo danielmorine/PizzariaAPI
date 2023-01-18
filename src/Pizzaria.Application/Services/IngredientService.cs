@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using Pizzaria.Application.Commands.IngredientCommands;
 using Pizzaria.Application.DTOs;
 using Pizzaria.Application.Queries.IngredientQueries;
@@ -12,11 +13,14 @@ public class IngredientService : IIngredientService
 {
     private readonly IMapper _mapper;
     private readonly IMediator _mediator;
+    private readonly ILogger<IngredientService> _logger;
 
-    public IngredientService(IMapper mapper, IMediator mediator)
+
+    public IngredientService(IMapper mapper, IMediator mediator, ILogger<IngredientService> logger)
     {
         _mapper = mapper;
         _mediator = mediator;
+        _logger = logger;
     }
 
     public async Task<ResponseResult> AddAsync(IngredientDTO dto)
@@ -75,7 +79,8 @@ public class IngredientService : IIngredientService
             responseResult.Payload = ingredientList;
         }
         catch (Exception ex)
-        {
+        {            
+            _logger.LogError(ex.ToString());
             responseResult.Success = false;
             responseResult.MessageError = new[] { ex.Message };
         }
@@ -85,6 +90,7 @@ public class IngredientService : IIngredientService
 
     public async Task<IResponseResult<IngredientDTO>> GetByIdAsync(Guid id)
     {
+        
         var responseResult = new ResponseResult<IngredientDTO>();
         try
         {
@@ -92,16 +98,16 @@ public class IngredientService : IIngredientService
             var ingredientDTO = _mapper.Map<IngredientDTO>(result);
 
             if (ingredientDTO is null)
-                responseResult.MessageError = new string[] { MessageValidation.IngredientNotFound }; 
+                responseResult.MessageError = new string[] { MessageValidation.IngredientNotFound };
             else
             {
                 responseResult.Success = true;
                 responseResult.Payload = ingredientDTO;
             }
-        }   
+        }
         catch (Exception ex)
         {
-            responseResult.Success = false; 
+            responseResult.Success = false;
             responseResult.MessageError = new[] { ex.Message };
         }
 
@@ -109,7 +115,7 @@ public class IngredientService : IIngredientService
     }
 
     public async Task<ResponseResult> UpdateAsync(IngredientDTO dto)
-    {
+    {        
         var responseResult = new ResponseResult();
         try
         {
@@ -117,10 +123,8 @@ public class IngredientService : IIngredientService
             var result = await _mediator.Send(ingredientUpdate);
 
             if (result is false)
-            {
-                responseResult.Success = false;
                 responseResult.MessageError = new[] { MessageValidation.IngredientNotFound };
-            }
+            else
             responseResult.Success = true;
         }
         catch (Exception ex)
