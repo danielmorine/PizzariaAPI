@@ -15,7 +15,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.ConfigureCollectorElasticSearchServer(builder.Configuration);
 app.UseStatusCodePages();
 
 app.UseHttpsRedirection();

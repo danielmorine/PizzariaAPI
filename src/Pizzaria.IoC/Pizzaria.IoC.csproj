@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\OpenTelemetryElasticConnector\OpenTelemetryElasticConnector\OpenTelemetryElasticConnector.csproj" />
     <ProjectReference Include="..\Pizzaria.Application\Pizzaria.Application.csproj" />
     <ProjectReference Include="..\Pizzaria.Domain\Pizzaria.Domain.csproj" />
     <ProjectReference Include="..\Pizzaria.Infra.Data\Pizzaria.Infra.Data.csproj" />

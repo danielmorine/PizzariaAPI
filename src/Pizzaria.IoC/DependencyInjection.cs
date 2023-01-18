@@ -1,11 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using OpenTelemetryElasticConnector;
 using Pizzaria.Application.Mappings;
 using Pizzaria.Application.Services;
 using Pizzaria.Application.Services.Interfaces;
@@ -27,7 +29,8 @@ public static class DependencyInjection
         services
             .AddSwaggerOptions()
             .AddInfrastructure(configuration)
-            .AddAuthConfiguration(configuration);
+            .AddAuthConfiguration(configuration)
+            .AddTelemetry();
         return services;
     }
 
@@ -123,5 +126,11 @@ public static class DependencyInjection
 
         services.AddMediatR(myHandlers);
         return services;
+    }
+
+    public static IApplicationBuilder ConfigureCollectorElasticSearchServer(this IApplicationBuilder app, IConfiguration configuration)
+    {
+        app.ConfigureApmServer(configuration);
+        return app;
     }
 }
